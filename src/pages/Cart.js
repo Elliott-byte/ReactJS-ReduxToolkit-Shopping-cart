@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import CartItem from "../components/CartItem";
 import { Link } from "react-router-dom";
 
@@ -7,7 +7,7 @@ const Cart = () => {
   const [totalAmount, setTotalAmount] = useState(0);
   const { cart } = useSelector((state) => state);
   useEffect(() => {
-    setTotalAmount(cart.reduce((acc, curr) => acc + curr.price, 0));
+    setTotalAmount(cart.reduce((acc, curr) => acc + curr.price, 0).toFixed(2));
   }, [cart]);
   return (
     <>

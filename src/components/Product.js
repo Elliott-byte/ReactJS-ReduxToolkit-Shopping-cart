@@ -29,7 +29,7 @@ const Product = ({ item }) => {
       <div className="group hover:scale-110 transition duration-300 ease-in flex flex-col items-center border-2 border-purple-400 gap-3 p-4 h-[350px] mt-10 ml-5  rounded-xl">
         <div className="h-[180px]">
           <img
-            src={item.image}
+            src={item.images[0]}
             alt={item.title}
             className="h-full w-full object-cover"
           />
