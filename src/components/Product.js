@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { add, remove } from "../redux/Slices/cartSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useSnackbar } from "notistack";
+import { openVideo } from "../redux/Slices/videoSlice";
+import VideoStreamModal from "./VideoStreamModal";
 
 const Product = ({ item }) => {
   const { cart } = useSelector((state) => state);
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
+  const videoUrl = "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
+  const handleOpenVideo = () => {
+    dispatch(openVideo(videoUrl));
+  };
 
   const addToCart = () => {
     dispatch(add(item));
@@ -32,6 +38,7 @@ const Product = ({ item }) => {
             src={item.images[0]}
             alt={item.title}
             className="h-full w-full object-cover"
+            onClick={handleOpenVideo}
           />
         </div>
         <div>
@@ -58,6 +65,7 @@ const Product = ({ item }) => {
           <p>${item.price}</p>
         </div>
       </div>
+      <VideoStreamModal />
     </>
   );
 };
